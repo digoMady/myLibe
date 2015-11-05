@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 85px;
+	background-color: #f2f2f2;
+}
+
+.footer .footer-info {
+	margin: 15px 0px;
+}
+
+.login-layout {
+	/*background: #FF4500 url("../pix/bg_login.jpg") no-repeat fixed center center / cover;*/
+	background: #FF4500;
+}
