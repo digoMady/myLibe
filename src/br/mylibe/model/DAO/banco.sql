@@ -1,16 +1,16 @@
-DROP DATABASE myLibe;
+DROP DATABASE mylibe;
 
 CREATE DATABASE myLibe;
 
 USE myLibe;
 
-CREATE TABLE usuario (
+CREATE TABLE user (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
-  nome varchar(50) NOT NULL,
-  sobrenome varchar(50) NOT NULL,
-  username varchar(10) NOT NULL,
-  password varchar(10) NOT NULL,
-  email varchar(10) NOT NULL,
+  name varchar(45) NOT NULL,
+  lastname varchar(45),
+  username varchar(45) NOT NULL,
+  password varchar(45) NOT NULL,
+  email varchar(45) NOT NULL,
   PRIMARY KEY (id)
 );
 

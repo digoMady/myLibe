@@ -18,7 +18,7 @@
 <%
 	//if (request.getParameter("content").equals("readBooks")) {
 		
-	//}
+	//} 
 %>
 <%@ include file="footer.html" %>
 </body>

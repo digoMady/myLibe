@@ -15,7 +15,7 @@ public class ConnectionFactory {
 				con = DriverManager.getConnection(sql, "root", "R");
 			}
 			catch (ClassNotFoundException e) {
-				throw new SQLException("Driver n�o localizado");
+				throw new SQLException("Driver não localizado");
 			}
 		}
 		return con;
