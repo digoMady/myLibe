@@ -6,69 +6,72 @@ import java.io.Serializable;
  * @author mady
  * @project myLibe
  */
+public class UserBean implements Serializable {
 
-public class UserBean implements Serializable{
-	private static final long serialVersionUID = 1L;
-	
-	private int id;
-	private String name;
-	private String lastName;
-	private String username;
-	private String password;
-	private String email;
-	private BookBean book;
-	
+    private static final long serialVersionUID = 1L;
 
-	public UserBean() {
-	
-	}
+    private int id;
+    private String name;
+    private String lastName;
+    private String username;
+    private String password;
+    private String email;
+    private BookBean book;
 
-	public int getId() {
-		return id;
-	}
+    public UserBean() {
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    }
 
-	public String getName() {
-		return name;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}	
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isRightPwd(String pwd) {
+        return this.password.equals(pwd);
+    }
 
 }

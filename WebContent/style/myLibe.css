@@ -1,18 +1,105 @@
 @CHARSET "UTF-8";
 
 .footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 85px;
-	background-color: #f2f2f2;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #f2f2f2;
 }
 
 .footer .footer-info {
-	margin: 15px 0px;
+    margin: 15px 0px;
 }
 
 .login-layout {
-	/*background: #FF4500 url("../pix/bg_login.jpg") no-repeat fixed center center / cover;*/
-	background: #FF4500;
+    background: gray url("../pix/bg_login2.jpg") no-repeat fixed center center / cover;
+}
+
+.login-layout .login {
+    margin: 10% 40%;
+}
+
+.btn-group-lg>.btn, .btn-new-lg {
+    font-size: 14px;
+    background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+    box-shadow: 0 1px 0 #3f6f21;
+    border-color: #3f6f21;
+    color: white;
+}
+.btn-group-lg>.btn, .btn-new-lg:hover{
+    background: linear-gradient(to bottom, #3f6f21 0, #3f6f21 100%);
+    color: white;
+}
+
+.btn-group-lg>.btn, .btn-red {
+    font-size: 14px;
+    background: linear-gradient(to bottom, #700000 0, #600000 100%);
+    box-shadow: 0 1px 0 #700000;
+    border-color: #300000;
+    color: white;
+}
+.btn-group-lg>.btn, .btn-red:hover{
+    background: linear-gradient(to bottom, #700000  0, #300000 100%);
+    color: white;
+}
+
+.login-layout .section-title h1  {
+    color: white;    
+    text-align: center;
+}
+
+.login-layout .btn-lg {
+    text-align: center;
+}
+
+.login-layout .login-form label{
+    line-height: 1.44em;
+    color: white;    
+}
+
+.login-layout .login-form .lb-text {
+    background: #edeff0;
+    border-radius: 4px;
+    border: 1px solid #cdd2d4;
+    box-sizing: border-box;
+    padding: 1em;
+    max-width: 250px;
+    width: 100%;
+}
+.login-layout .login-form label {
+    text-align: left;
+}
+
+.bg-search {
+
+}
+
+.navbar-brand img:hover{
+    background: transparent;
+}
+
+.navbar-inverse {
+    background-color: #f2f2f2;
+    border-color: #DCDCDC;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #708090;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover{
+    color: #FF4500;
+}
+
+.ft-mylibe img{
+    margin: 4px;
+}
+
+table .even {
+    background-color: #f1f1f1;
+}
+
+.alert {
+    padding: 8px;
 }

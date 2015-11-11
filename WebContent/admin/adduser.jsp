@@ -5,7 +5,11 @@
     <h3>Adicionar Usuário</h3>
     <div class="form add-user-form">
         <form action="${raiz}/usercrud" method="post">
-            <input type="hidden" name="id" value="${user.id==null?param.id:aluno.id}" />
+            
+            <legend>
+                    <b>${(user.id==0) || (param.id==0) ? 'Incluis&atilde;o':'Altera&ccedil;&atilde;o'}	do Usuário</b>
+            </legend>
+            <input type="hidden" name="id" value="${user.id == null ? param.id : user.id}" />
             <input type="hidden" value="add-user" name="acao"/>
             <label>Nome</label>
             <input type="text" name="name" placeholder="Nome" required /><br/>

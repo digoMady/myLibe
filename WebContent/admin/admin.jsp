@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>MyLibe</title>
         <c:set var="raiz" value="${pageContext.request.contextPath}" />
+        <link rel="shortcut icon" href="${raiz}/pix/mylibe.ico">
         <link href="${raiz}/style/bootstrap.min.css" rel="stylesheet"> 
         <link href="${raiz}/style/myLibe.css" rel="stylesheet"> 
         <script src="${raiz}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
