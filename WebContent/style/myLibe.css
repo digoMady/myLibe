@@ -1,18 +1,178 @@
 @CHARSET "UTF-8";
 
 .footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 85px;
-	background-color: #f2f2f2;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #f2f2f2;
 }
 
 .footer .footer-info {
-	margin: 15px 0px;
+    margin: 15px 0px;
 }
 
 .login-layout {
-	/*background: #FF4500 url("../pix/bg_login.jpg") no-repeat fixed center center / cover;*/
-	background: #FF4500;
+    background: gray url("../pix/bg_login2.jpg") no-repeat fixed center center / cover;
+}
+
+.main {
+    min-height: 81vh;
+    margin-top: 6%;
+}
+
+.login-layout .login {
+    margin: 10% 40%;
+}
+
+#add-book {
+    margin: 5% 35%;
+}
+
+#add-book input{
+    width: auto;
+}
+
+.btn-group-lg>.btn, .btn-new-lg {
+    font-size: 14px;
+    background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+    box-shadow: 0 1px 0 #3f6f21;
+    border-color: #3f6f21;
+    color: white;
+}
+.btn-group-lg>.btn, .btn-new-lg:hover{
+    background: linear-gradient(to bottom, #3f6f21 0, #3f6f21 100%);
+    color: white;
+}
+
+.btn-group-lg>.btn, .btn-red {
+    font-size: 14px;
+    background: linear-gradient(to bottom, #700000 0, #600000 100%);
+    box-shadow: 0 1px 0 #700000;
+    border-color: #300000;
+    color: white;
+}
+.btn-group-lg>.btn, .btn-red:hover{
+    background: linear-gradient(to bottom, #700000  0, #300000 100%);
+    color: white;
+}
+
+.login-layout .section-title h1  {
+    color: white;    
+    text-align: center;
+}
+
+.login-layout .btn-lg {
+    text-align: center;
+}
+
+.login-layout .login-form label{
+    line-height: 1.44em;
+    color: white;    
+}
+
+.login-layout .login-form .lb-text {
+    background: #edeff0;
+    border-radius: 4px;
+    border: 1px solid #cdd2d4;
+    box-sizing: border-box;
+    padding: 1em;
+    max-width: 250px;
+    width: 100%;
+}
+.login-layout .login-form label {
+    text-align: left;
+}
+
+.navbar-brand img:hover{
+    background: transparent;
+}
+
+.navbar-inverse {
+    background-color: #f2f2f2;
+    border-color: #DCDCDC;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #708090;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover{
+    color: #FF4500;
+}
+
+.ft-mylibe img{
+    margin: 4px;
+}
+
+table .even {
+    background-color: #f1f1f1;
+}
+
+table .even:hover {
+    background-color: #e5f2ff;
+}
+
+table .odd:hover {
+    background-color: #ffefe5;
+}
+
+.alert {
+    padding: 8px;
+}
+
+.nav-bot .orange {
+    color: #FF4500 !important;
+}
+
+.nav-bot .orange:hover{
+    color: #708090 !important;
+    text-decoration: underline;
+}
+
+
+a:not(#adminConfig) .glyphicon{
+    color: #262626;    
+}
+
+.glyphicon:not(#adminConfig):hover{
+    color: #FF4500;        
+}
+
+.glyphicon-remove {
+   color: #990000 !important; 
+}
+
+.glyphicon-remove:hover{
+   color: red !important; 
+}
+
+.glyphicon-ok {
+   color: #006600 !important; 
+}
+
+.glyphicon-ok:hover {
+   color: #00cc00 !important; 
+}
+
+.view-book {
+    margin-top: 6%;
+    text-align: center;
+}
+
+.view-book h2 {
+    color: #cc3800;
+}
+
+.view-book-bt {
+    margin: 2%;
+}
+
+.add-user-form {
+    margin: 0 35%; 
+}
+
+#table-user{
+    margin: 0 20%;
+    max-width: 60%;
 }
