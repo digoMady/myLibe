@@ -1,5 +1,6 @@
 package br.mylibe.model.negocio;
 
+import br.mylibe.model.enums.TypeUser;
 import java.io.Serializable;
 
 /**
@@ -16,10 +17,27 @@ public class UserBean implements Serializable {
     private String username;
     private String password;
     private String email;
-    private BookBean book;
+    private String hash;
+    private TypeUser type;
 
     public UserBean() {
 
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public TypeUser getType() {
+        return type;
+    }
+
+    public void setType(TypeUser type) {
+        this.type = type;
     }
 
     public int getId() {

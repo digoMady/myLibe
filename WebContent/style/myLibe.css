@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 .footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     height: 110px;
@@ -16,8 +16,21 @@
     background: gray url("../pix/bg_login2.jpg") no-repeat fixed center center / cover;
 }
 
+.main {
+    min-height: 81vh;
+    margin-top: 6%;
+}
+
 .login-layout .login {
     margin: 10% 40%;
+}
+
+#add-book {
+    margin: 5% 35%;
+}
+
+#add-book input{
+    width: auto;
 }
 
 .btn-group-lg>.btn, .btn-new-lg {
@@ -71,10 +84,6 @@
     text-align: left;
 }
 
-.bg-search {
-
-}
-
 .navbar-brand img:hover{
     background: transparent;
 }
@@ -100,6 +109,70 @@ table .even {
     background-color: #f1f1f1;
 }
 
+table .even:hover {
+    background-color: #e5f2ff;
+}
+
+table .odd:hover {
+    background-color: #ffefe5;
+}
+
 .alert {
     padding: 8px;
+}
+
+.nav-bot .orange {
+    color: #FF4500 !important;
+}
+
+.nav-bot .orange:hover{
+    color: #708090 !important;
+    text-decoration: underline;
+}
+
+
+a:not(#adminConfig) .glyphicon{
+    color: #262626;    
+}
+
+.glyphicon:not(#adminConfig):hover{
+    color: #FF4500;        
+}
+
+.glyphicon-remove {
+   color: #990000 !important; 
+}
+
+.glyphicon-remove:hover{
+   color: red !important; 
+}
+
+.glyphicon-ok {
+   color: #006600 !important; 
+}
+
+.glyphicon-ok:hover {
+   color: #00cc00 !important; 
+}
+
+.view-book {
+    margin-top: 6%;
+    text-align: center;
+}
+
+.view-book h2 {
+    color: #cc3800;
+}
+
+.view-book-bt {
+    margin: 2%;
+}
+
+.add-user-form {
+    margin: 0 35%; 
+}
+
+#table-user{
+    margin: 0 20%;
+    max-width: 60%;
 }

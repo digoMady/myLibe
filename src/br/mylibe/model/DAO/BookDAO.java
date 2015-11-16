@@ -5,7 +5,9 @@
  */
 package br.mylibe.model.DAO;
 
+import br.mylibe.model.enums.BookClass;
 import br.mylibe.model.negocio.BookBean;
+import br.mylibe.model.negocio.UserBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,13 +35,14 @@ public class BookDAO {
         if (book == null) {
             return 0;
         }
-        String sql = "INSERT INTO book (name, writer, description, pages) values (?, ?, ?, ?)";
+        String sql = "INSERT INTO book (name, writer, description, pages, type, user_id) values (?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, book.getName());
         stmt.setString(2, book.getWriter());
         stmt.setString(3, book.getDescription());
         stmt.setInt(4, book.getPages());
-//        stmt.setString(4, book.getType);
+        stmt.setString(5, (book.getType().toString()));
+        stmt.setInt(6, book.getUser().getId());
 
         int retorno = stmt.executeUpdate();
         stmt.close();
@@ -58,8 +61,9 @@ public class BookDAO {
             book.setName(rs.getString("name"));
             book.setWriter(rs.getString("writer"));
             book.setDescription(rs.getString("description"));
-            book.setPages(rs.getInt("pages"));
-//            book.setType(rs.getString("type"));
+            book.setPages(rs.getInt("pages"));            
+            book.setType(BookClass.valueOf(rs.getString("type")));
+            book.setUser(new UserDAO().read(rs.getInt("id")));
         }
         rs.close();
         stmt.close();
@@ -71,14 +75,16 @@ public class BookDAO {
             return 0;
         }
         String sql = "UPDATE book SET name = ?, writer = ?, "
-                + " description = ?, pages = ? WHERE id = ? ";
+                + " description = ?, pages = ?, type = ?, user_id = ? WHERE id = ? ";
         PreparedStatement stmt = this.con.prepareStatement(sql);
 
         stmt.setString(1, book.getName());
         stmt.setString(2, book.getWriter());
         stmt.setString(3, book.getDescription());
-        stmt.setInt(4, book.getPages());
-//        stmt.setString(4, book.getType());
+        stmt.setInt(4, book.getPages());               
+        stmt.setString(5, (book.getType().toString()));
+        stmt.setInt(6, book.getUser().getId());
+        stmt.setInt(7, book.getId());
 
         int retorno = stmt.executeUpdate();
         stmt.close();
@@ -109,7 +115,9 @@ public class BookDAO {
             book.setWriter(rs.getString("writer"));
             book.setDescription(rs.getString("description"));
             book.setPages(rs.getInt("pages"));
-//        stmt.setType(rs.getString("type"));           
+            book.setType(BookClass.valueOf(rs.getString("type")));
+            book.setUser(new UserDAO().read(rs.getInt("id")));
+            
             books.add(book);
         }
         rs.close();
@@ -129,8 +137,9 @@ public class BookDAO {
             book.setName(rs.getString("name"));
             book.setWriter(rs.getString("writer"));
             book.setDescription(rs.getString("description"));
-            book.setPages(rs.getInt("pages"));
-//        stmt.setType(rs.getString("type"));            
+            book.setPages(rs.getInt("pages"));             
+            book.setType(BookClass.valueOf(rs.getString("type")));
+            book.setUser(new UserDAO().read(rs.getInt("id")));
             books.add(book);
         }
         rs.close();

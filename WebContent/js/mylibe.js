@@ -2,13 +2,16 @@
  * @author mady
  * @project myLibe
  */
+var resetForm = function (idForm) {
+    $('#' + idForm)[0].reset();
+}
 
 /**
  * Call a ajax request for add a form to add a user
  * 
  */
 var addUser = function () {
-    var url = "http://" + location.host + "/mylibe/view/admin/adduser.jsp"
+    var url = "http://" + location.host + "/mylibe/admin/adduser.jsp"
     ajaxRequest(url);
 }
 
@@ -34,7 +37,7 @@ var cancelAdd = function () {
  * @returns {undefined}
  */
 var ajaxRequest = function (url) {
-	var dados = $("admin-user-form").serialize();
+    var dados = $("admin-user-form").serialize();
     $.ajax({
         type: 'POST',
         url: url,
@@ -42,9 +45,9 @@ var ajaxRequest = function (url) {
         cache: true,
         beforeSend: function () {
             var load = '<div style="z-index: 10;"><img src="http://' + location.host + '/pix/ring.svg">' +
-            '<p style="color: #088a08;">Carregando gráfico...</p></div>';
-            $(".chartGl").prepend(load);      
-                },
+                    '<p style="color: #088a08;">Carregando gráfico...</p></div>';
+            $(".chartGl").prepend(load);
+        },
         success: function (result) {
             $("#ajax-response").empty();
             $("#ajax-response").html(result);

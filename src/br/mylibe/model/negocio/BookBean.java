@@ -1,5 +1,6 @@
 package br.mylibe.model.negocio;
 
+import br.mylibe.model.enums.BookClass;
 import java.io.Serializable;
 
 /**
@@ -15,17 +16,26 @@ public class BookBean implements Serializable {
     private String writer;
     private String description;
     private int pages;
-    private String type;
+    private BookClass type;
+    private UserBean user;
 
     public BookBean() {
-        // TODO Auto-generated constructor stub
+        
     }
 
-    public String getType() {
+    public UserBean getUser() {
+        return user;
+    }
+
+    public void setUser(UserBean user) {
+        this.user = user;
+    }
+
+    public BookClass getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(BookClass type) {
         this.type = type;
     }
 

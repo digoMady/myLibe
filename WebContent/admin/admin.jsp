@@ -8,59 +8,80 @@
         <title>MyLibe</title>
         <c:set var="raiz" value="${pageContext.request.contextPath}" />
         <link rel="shortcut icon" href="${raiz}/pix/mylibe.ico">
+        <link href="${raiz}/style/reset.css" rel="stylesheet"> 
         <link href="${raiz}/style/bootstrap.min.css" rel="stylesheet"> 
         <link href="${raiz}/style/myLibe.css" rel="stylesheet"> 
         <script src="${raiz}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="${raiz}/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="${raiz}/js/user.js" type="text/javascript"></script>
+        <script src="${raiz}/js/mylibe.js" type="text/javascript"></script>
 
     </head>
     <body>
         <%@ include file= "/navbar.html" %>
-        <div id="admin-config" align="center">
-            //breadcrumb<br><br>
-            <h2>Administrador</h2><br/>
+        <div id="admin-config" class="main">
+            <h2 align="center">Administrador</h2><br/>
             <div class="admin-user">
-                <form action="" id="admin-user-form" method="get">
-                    <input type="button" onclick="addUser()" value="Adicionar Usuário" class="mylibe-button">
-                    <input type="button" onclick="showUsers()" value="Mostrar Usuários" class="mylibe-button">
+                <form action="" id="admin-user-form" method="get" align="center">
+                    <input type="button" class="btn btn-success" onclick="addUser()" value="Adicionar Usuário" class="mylibe-button">
+                    <input type="button" class="btn btn-success" onclick="window.location = '${raiz}/usercrud';" value="Mostrar Usuários" class="mylibe-button">
                 </form>
                 <div id="ajax-response"></div>
-                <div class="users-list" style="display: none">
-                    <h4>Usuários do sistema</h4>
-                    <table border="1" width="780" id="users">
-                        <thead>
-                            <tr bgcolor='#BBBBBB'>
-                                <th width="80" align="center">Nome</th>
-                                <th width="50" align="center"><i>e-mail</i></th>
-                                <th width="40" align="center">Ativo</th>
-                                <th width="40">Açoẽs</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="user" items="${users}">
-                                <c:set var="linha" value="${line+1}" />
-                                ${line%2==0?"<tr class='odd'>":"<tr class='even'>"}
-                            <td align="center">${line}</td>
-                            <td align="left">${user.name}&nbsp;${user.lastname}</td>
-                            <td align="left">${user.email}</td>
-                            <td align="center">
-                                <a href="${raiz}/cursocrud?acao=edit&id=${curso.id}"><img src="${raiz}/img/alterar.png" border="0" width="15" alt="Alterar Curso"></a>&nbsp;
-                                <a href="${raiz}/cursocrud?acao=excluir&id=${curso.id}"><img src="${raiz}/img/excluir.png" border="0" width="15" alt="Excluir Curso"></a>
-                            </td>
-                            </tr>
-                        </c:forEach>	
-                        </tbody>
-                    </table>
-                    <input type="button" onclick="hideUsers()" value="Esconder Usuários" class="mylibe-button">
-                </div>
+                 <%@ include file= "/alert/alert.jsp" %>
+                <c:if test="${users != NULL}">
+                    
+                    <div border="1" id="table-user">
+                        <h4 align="center" >Usuários do sistema</h4>
+                        <table border="1" class="table table-bordered" id="users">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nome</th>
+                                    <th><i>E-mail</i></th>
+                                    <th>Papel</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="user" items="${users}">
+                                    <c:set var="line" value="${line+1}" />
+                                    ${line%2==0?"<tr class='odd'>":"<tr class='even'>"}
+                                <td align="center">${line}</td>
+                                <td align="left">${user.name}&nbsp;${user.lastName}</td>
+                                <td align="left">${user.email}</td>
+                                <td align="left">${user.type}</td>
+                                <td align="center">
+                                    <a href="${raiz}/usercrud?acao=update&id=${user.id}">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true" alt="Alterar Usuario" title="Alterar Usuario"></span></a>&nbsp;
+
+                                    <a href="#myModal" data-toggle="modal">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true" alt="Excluir Usuario" title="Excluir Usuario"></span></a>
+                                        
+                                    <a href="${raiz}/usercrud?acao=view&id=${user.id}" target="_blank">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true" alt="Ver Usuario" title="Ver Usuario"></span></a>
+                                </td>
+                                </tr>
+                            </c:forEach>	
+                            </tbody>
+                        </table>
+                        <input type="button" onclick="hideUsers()" value="Esconder Usuários" class="mylibe-button">
+                    </div>
+                </c:if>
+                <c:if test="${users != NULL}"> 
+                    <div class="alert alert-success" role="alert">${mensagem}</div>
+                </c:if>
 
             </div>
-            <%
-                    //if (request.getParameter("content").equals("readBooks")) {
-
-                    //}
-            %>
-            <%@ include file="/footer.html" %>
+            <center style="width: 250px;">
+                <c:if test="${erro != NULL}">
+                    <br><br>
+                    <div class="alert alert-danger" role="alert">${erro}</div>
+                </c:if>
+                <c:if test="${mensagem != NULL}">
+                    <br>
+                    <div class="alert alert-success" role="alert">${mensagem}</div>
+                </c:if>
+            </center>
+        </div>
+        <%@ include file="/footer.html" %>
     </body>
 </html>

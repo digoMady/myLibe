@@ -16,22 +16,19 @@ public class UserDAO {
     public UserDAO() throws SQLException {
         this.con = ConnectionFactory.getConnection();
     }
-
-    /**
-     * CreateReadUpdateDelete - CRUD
-     *
-     */
+    
     public int create(UserBean user) throws SQLException {
         if (user == null) {
             return 0;
         }
-        String sql = "INSERT INTO user (name, lastName, username, password, email) values (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (name, lastName, username, password, email, hash) values (?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, user.getName());
         stmt.setString(2, user.getLastName());
         stmt.setString(3, user.getUsername());
         stmt.setString(4, user.getPassword());
-        stmt.setString(4, user.getEmail());
+        stmt.setString(5, user.getEmail());
+        stmt.setString(6, user.getHash());
 
         int retorno = stmt.executeUpdate();
         stmt.close();
@@ -39,7 +36,7 @@ public class UserDAO {
     }
 
     public UserBean read(String username, String password) throws SQLException {
-        String sql = "SELECT * FROM curso WHERE username = ? AND password = ?";
+        String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
         PreparedStatement stmt = this.con.prepareStatement(sql);
         stmt.setString(1, username);
         stmt.setString(2, password);
@@ -60,7 +57,7 @@ public class UserDAO {
     }
 
     public UserBean read(int id) throws SQLException {
-        String sql = "SELECT * FROM curso WHERE id = ?";
+        String sql = "SELECT * FROM user WHERE id = ?";
         PreparedStatement stmt = this.con.prepareStatement(sql);
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();

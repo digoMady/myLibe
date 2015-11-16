@@ -38,6 +38,7 @@ public class Login extends HttpServlet {
                 user = (new UserDAO()).read(request.getParameter("username"));
                 if ((user != null) && (user.isRightPwd(request.getParameter("password")))) {
                     session.setAttribute("logged", user);
+                    session.setAttribute("userId", user.getId());
                     request.setAttribute("mensagem", "Usuário logado");
                     page = "/index.jsp";
                 } else {
