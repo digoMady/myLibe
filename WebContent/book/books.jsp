@@ -20,9 +20,10 @@
             </c:if>
         </div>
     </form>
-    <%@ include file= "/alert/alert.jsp" %>
+    <div class="msg-error">
+        <%@ include file= "/alert/alert.jsp" %>
+    </div>
     <p />
-
     <div style="max-width: 80%">
         <table border="1" class="table table-bordered">
             <thead>
@@ -47,7 +48,7 @@
                     <a href="${raiz}/bookcrud?acao=update&id=${book.id}">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true" alt="Alterar Livro" title="Alterar Livro"></span></a>&nbsp;
 
-                    <a href="#myModal" data-toggle="modal" data-target="#book-delete-modal" data-whatever="@mdo">
+                    <a class="delete-book" href="${raiz}/bookcrud?acao=delete&id=${book.id}">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true" alt="Excluir Livro" title="Excluir Livro"></span></a>
 
                     <a href="${raiz}/readbookcrud?acao=add&id=${book.id}">
@@ -66,33 +67,13 @@
             class="btn btn-success">Adicionar Livro</button>
     <br/>
 </div>
-<div class="modal fade" id="book-delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Delete</h4>
-            </div>
-            <div class="modal-body">
-                <p>Are sure that you want to delete the book?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" onclick="window.location = 'bookcrud?acao=delete&id=${book.id}';">Delete book</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 <script>
-    $('#book-delete-modal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        modal.find('.modal-title').text('Delete book ' + ${book.id != null ? book.id : "1"});
-        modal.find('.modal-body input').val(recipient);
-    })
+    $("a.delete-book").click(function (e) {
+        e.preventDefault();
+        var r = confirm("Want to delete?");
+        var url = $(this).attr("href");
+        if (r) {
+            window.location = url;
+        }
+    });
 </script>

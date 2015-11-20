@@ -8,16 +8,19 @@
             <div class="form-group">
                 <input type="hidden" value="save" name="acao"/>
                 <input type="hidden" name="id" value="0" />
-                <label>Nome</label>
+                <label>Nome*</label>
                 <input type="text" class="form-control" name="name" placeholder="Nome" required />
                 <label>Sobrenome</label>
                 <input type="text" class="form-control" name="lastName" placeholder="Sobrenome" />
-                <label>E-mail</label>
+                <label>E-mail*</label>
                 <input type="email" class="form-control" name="email" placeholder="E-mail" required />
-                <label>Nome do usuário</label>
+                <label>Nome do usuário*</label>
                 <input type="text" class="form-control" name="username" placeholder="Usuário" required />
-                <label>Senha</label>
+                <label>Senha*</label>
                 <input type="password" class="form-control" name="password" placeholder="Senha" required/><br/>
+                <div class='required-data'>
+                    <p>*campos obrigatórios</p>
+                </div>
                 <div buttons-form align="center">
                     <input type="button" class="btn btn-warning" onclick="resetForm('add-user-form')" value="Limpar os Dados"/>
                     <input type="button" class="btn btn-default" value="Cancelar" onclick="cancelAdd()"/>
@@ -25,7 +28,6 @@
                 </div>
             </div>
         </form>
-        <%@ include file= "/alert/alert.jsp" %>
     </div>    
 </div>
 

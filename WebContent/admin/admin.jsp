@@ -18,6 +18,7 @@
     </head>
     <body>
         <%@ include file= "/navbar.html" %>
+
         <div id="admin-config" class="main">
             <h2 align="center">Administrador</h2><br/>
             <div class="admin-user">
@@ -26,10 +27,11 @@
                     <input type="button" class="btn btn-success" onclick="window.location = '${raiz}/usercrud';" value="Mostrar Usuários" class="mylibe-button">
                 </form>
                 <div id="ajax-response"></div>
-                 <%@ include file= "/alert/alert.jsp" %>
+                <div class="msg-error" align="center">
+                    <%@ include file= "../alert/alert.jsp" %>
+                </div>
                 <c:if test="${users != NULL}">
-                    
-                    <div border="1" id="table-user">
+                    <div border="1" id="table-user" class="users-list">
                         <h4 align="center" >Usuários do sistema</h4>
                         <table border="1" class="table table-bordered" id="users">
                             <thead>
@@ -53,9 +55,9 @@
                                     <a href="${raiz}/usercrud?acao=update&id=${user.id}">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true" alt="Alterar Usuario" title="Alterar Usuario"></span></a>&nbsp;
 
-                                    <a href="#myModal" data-toggle="modal">
+                                    <a class="delete-user" href="${raiz}/usercrud?acao=delete&id=${user.id}">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true" alt="Excluir Usuario" title="Excluir Usuario"></span></a>
-                                        
+
                                     <a href="${raiz}/usercrud?acao=view&id=${user.id}" target="_blank">
                                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true" alt="Ver Usuario" title="Ver Usuario"></span></a>
                                 </td>
@@ -63,25 +65,23 @@
                             </c:forEach>	
                             </tbody>
                         </table>
-                        <input type="button" onclick="hideUsers()" value="Esconder Usuários" class="mylibe-button">
+                        <div align="center">
+                            <input type="button" class="btn btn-warning" onclick="hideUsers()" value="Esconder Usuários" class="mylibe-button">
+                        </div>
                     </div>
-                </c:if>
-                <c:if test="${users != NULL}"> 
-                    <div class="alert alert-success" role="alert">${mensagem}</div>
-                </c:if>
-
+                </c:if>                
             </div>
-            <center style="width: 250px;">
-                <c:if test="${erro != NULL}">
-                    <br><br>
-                    <div class="alert alert-danger" role="alert">${erro}</div>
-                </c:if>
-                <c:if test="${mensagem != NULL}">
-                    <br>
-                    <div class="alert alert-success" role="alert">${mensagem}</div>
-                </c:if>
-            </center>
         </div>
         <%@ include file="/footer.html" %>
+        <script>
+            $("a.delete-user").click(function (e) {
+                e.preventDefault();
+                var r = confirm("Want to delete?");
+                var url = $(this).attr("href");
+                if (r) {
+                    window.location = url;
+                }
+            });
+        </script>
     </body>
 </html>

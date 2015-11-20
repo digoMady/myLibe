@@ -1,13 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.mylibe.controller;
 
-import br.mylibe.model.DAO.BookDAO;
-import br.mylibe.model.DAO.UserDAO;
-import br.mylibe.model.enums.BookClass;
-import br.mylibe.model.negocio.BookBean;
-import br.mylibe.model.negocio.UserBean;
+import br.mylibe.model.DAO.WishListDAO;
+import br.mylibe.model.negocio.WishListBean;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,10 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class BookCRUD
+ *
+ * @author mady
  */
-@WebServlet("/bookcrud")
-public class BookCRUD extends HttpServlet {
+@WebServlet(name = "WishListCrud", urlPatterns = {"/wishlistcrud"})
+public class WishListCrud extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,9 +35,9 @@ public class BookCRUD extends HttpServlet {
         String acao = request.getParameter("acao"); //get what to do
         String filter = request.getParameter("filter"); //get the filter status
         String page = null; //page that will be request
-        BookBean book = new BookBean();        
-        BookDAO bookDao;
-        List<BookBean> books = null;        
+        WishListBean wish = new WishListBean();        
+        WishListDAO wishDao;
+        List<WishListBean> wishs = null;        
 
         if (session.getAttribute("logged") == null) {
             page = "/login.jsp";
@@ -166,4 +168,5 @@ public class BookCRUD extends HttpServlet {
         dispatcher.forward(request, response);
 
     }
+
 }

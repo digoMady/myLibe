@@ -1,6 +1,8 @@
 package br.mylibe.model.negocio;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -11,7 +13,7 @@ public class ReadBookBean implements Serializable{
     
     private Date beginReadDate;
     private Date endReadDate;
-    private BookBean book;
+    private List<BookBean> books;
     private UserBean user;
 
     public Date getBeginReadDate() {
@@ -30,12 +32,12 @@ public class ReadBookBean implements Serializable{
         this.endReadDate = endReadDate;
     }
 
-    public BookBean getBook() {
-        return book;
+    public List<BookBean> getBooks() {
+        return books;
     }
 
-    public void setBook(BookBean book) {
-        this.book = book;
+    public void setBooks(List<BookBean> books) {
+        this.books = books;
     }
 
     public UserBean getUser() {

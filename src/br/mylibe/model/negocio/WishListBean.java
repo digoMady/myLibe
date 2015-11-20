@@ -1,6 +1,7 @@
 package br.mylibe.model.negocio;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
