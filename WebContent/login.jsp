@@ -12,7 +12,7 @@
         <link href="${raiz}/style/myLibe.css" rel="stylesheet">
     </head>    
     <body class="login-layout">
-        <div class="login">
+        <div class="login ">
             <div class="section-title">
                 <h1>MyLibe</h1>
             </div>

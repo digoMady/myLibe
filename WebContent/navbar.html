@@ -30,7 +30,7 @@
             <ul class="navbar-right nav navbar-nav">                               
                 <c:if test="${logged != null}">
                     <li class="nav-bot">                        
-                        <a class="orange" href="${pageContext.request.contextPath}/login?acao=view&id=${logged.id}">
+                        <a class="orange" href="${pageContext.request.contextPath}/usercrud?acao=view&id=${logged.id}">
                             ${logged.name}</a>
                     </li>
                     <li class="nav-bot" >
@@ -42,12 +42,14 @@
                         <a id="adminConfig" href="${raiz}/login.jsp">Login</a>
                     </li>
                 </c:if>
-                <li class="nav-bot">
-                    <a id="adminConfig" href="${raiz}/admin/admin.jsp" alt="Administracao"
-                       title="Administracao">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                </li> 
+                <c:if test="${logged.type == 'ADMIN'}">
+                    <li class="nav-bot">
+                        <a id="adminConfig" href="${raiz}/admin/admin.jsp" alt="Administracao"
+                           title="Administracao">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                    </li> 
+                </c:if>
             </ul>
         </div>
     </div>

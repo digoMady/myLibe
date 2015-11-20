@@ -59,16 +59,29 @@ public class UserCRUD extends HttpServlet {
                     request.setAttribute("user", user);
                     request.setAttribute("types", TypeUser.USER);
                     page = "/index.jsp?content=addUser";     
+                }  //view
+                else if (acao.equals("view")) {
+                    user = userDao.read(Integer.valueOf(request.getParameter("id")));
+                    if (user == null) {
+                        request.setAttribute("alert", "erro");
+                        request.setAttribute("msg", "Error in find for view!");
+                    } else {
+                        request.setAttribute("user", user);
+                        request.setAttribute("types", TypeUser.USER);
+                        page = "/admin/user.jsp?content=viewuser";
+                    }
+                    
                 } //alterar
                 else if ((acao != null) && (acao.equals("update"))) {
                     user = userDao.read(Integer.valueOf(request.getParameter("id")));
                     if (user == null) {
-                        request.setAttribute("erro", "Erro ao localizar para alteração");
+                        request.setAttribute("alert", "erro");
+                        request.setAttribute("msg", "Error in find for update!");
                     } else {
                         users = userDao.list();
                         request.setAttribute("user", user);
-                        request.setAttribute("users", users);
-                        page = "/index.jsp?content=addUser";
+                        request.setAttribute("types", TypeUser.USER);
+                        page = "/admin/user.jsp?content=edituser";
                     }
                 }
                 else if ((acao != null) && (acao.equals("filter"))) {
@@ -106,7 +119,7 @@ public class UserCRUD extends HttpServlet {
                         if (request.getParameter("id").equals("0")) { // Incluir
                             
                             if (userDao.create(user) > 0) {
-                                request.setAttribute("alert", "succes");
+                                request.setAttribute("alert", "success");
                                 request.setAttribute("msg", "Insert with success!");
                             } else {
                                 request.setAttribute("alert", "erro");
@@ -115,9 +128,11 @@ public class UserCRUD extends HttpServlet {
                         } else { // Alterar
                             user.setId(Integer.valueOf(request.getParameter("id")));
                             if (userDao.update(user) > 0) {
-                                request.setAttribute("mensagem", "Alterado com sucesso");
+                                request.setAttribute("alert", "success");
+                                request.setAttribute("msg", "Update with success!");
                             } else {
-                                request.setAttribute("erro", "Erro de alteração");
+                                request.setAttribute("alert", "erro");
+                                request.setAttribute("msg", "Error in update!");
                             }
                         }
                         users = userDao.list();
@@ -142,12 +157,12 @@ public class UserCRUD extends HttpServlet {
                     } finally {
                         users = userDao.list();
                         request.setAttribute("users", users);
-                        page = "/view/admin/admin.jsp";
+                        page = "/admin/admin.jsp";
                     }
                 }
             } catch (SQLException e) {
                 request.setAttribute("erro", "Erro de banco de dados");
-                page = "/view/admin/admin.jsp";
+                page = "/admin/admin.jsp";
             }
         }
         dispatcher = request.getRequestDispatcher(page);

@@ -1,5 +1,6 @@
 package br.mylibe.model.DAO;
 
+import br.mylibe.model.enums.TypeUser;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,7 @@ public class UserDAO {
         if (user == null) {
             return 0;
         }
-        String sql = "INSERT INTO user (name, lastName, username, password, email, hash) values (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (name, lastName, username, password, email, hash, type) values (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, user.getName());
         stmt.setString(2, user.getLastName());
@@ -29,6 +30,7 @@ public class UserDAO {
         stmt.setString(4, user.getPassword());
         stmt.setString(5, user.getEmail());
         stmt.setString(6, user.getHash());
+        stmt.setString(7, (user.getType().toString()));
 
         int retorno = stmt.executeUpdate();
         stmt.close();
@@ -50,6 +52,8 @@ public class UserDAO {
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
+            user.setHash(rs.getString("hash"));
+            user.setType(TypeUser.valueOf(rs.getString("type")));
         }
         rs.close();
         stmt.close();
@@ -70,6 +74,8 @@ public class UserDAO {
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
+            user.setHash(rs.getString("hash"));
+            user.setType(TypeUser.valueOf(rs.getString("type")));
         }
         rs.close();
         stmt.close();
@@ -90,6 +96,8 @@ public class UserDAO {
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
+            user.setHash(rs.getString("hash"));
+            user.setType(TypeUser.valueOf(rs.getString("type")));
         }
         rs.close();
         stmt.close();
@@ -100,17 +108,17 @@ public class UserDAO {
         if (user == null) {
             return 0;
         }
-        String sql = "UPDATE user SET name = ?, lastName = ?, "
-                + " username = ?, password = ?, email = ? WHERE id = ? ";
+        String sql = "UPDATE user SET " +
+                " name = ?, lastName = ?, password = ?, email = ?, type = ? WHERE id = ? ";
         PreparedStatement stmt = this.con.prepareStatement(sql);
 
         stmt.setString(1, user.getName());
         stmt.setString(2, user.getLastName());
-        stmt.setString(3, user.getUsername());
-        stmt.setString(4, user.getPassword());
+        stmt.setString(3, user.getPassword());
         stmt.setString(4, user.getEmail());
-        stmt.setInt(5, user.getId());
-
+        stmt.setString(5, (user.getType().toString()));
+        stmt.setInt(6, user.getId());
+        
         int retorno = stmt.executeUpdate();
         stmt.close();
         return retorno;
@@ -141,6 +149,8 @@ public class UserDAO {
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
+            user.setHash(rs.getString("hash"));
+            user.setType(TypeUser.valueOf(rs.getString("type")));
             users.add(user);
         }
         rs.close();
@@ -162,6 +172,8 @@ public class UserDAO {
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
+            user.setHash(rs.getString("hash"));
+            user.setType(TypeUser.valueOf(rs.getString("type")));
             users.add(user);
         }
         rs.close();

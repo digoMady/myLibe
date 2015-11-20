@@ -1,9 +1,15 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.mylibe.controller;
 
 import br.mylibe.model.DAO.BookDAO;
-import br.mylibe.model.DAO.UserDAO;
+import br.mylibe.model.DAO.ReadBookDAO;
 import br.mylibe.model.enums.BookClass;
 import br.mylibe.model.negocio.BookBean;
+import br.mylibe.model.negocio.ReadBookBean;
 import br.mylibe.model.negocio.UserBean;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,10 +24,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class BookCRUD
+ *
+ * @author mady
  */
-@WebServlet("/bookcrud")
-public class BookCRUD extends HttpServlet {
+@WebServlet(name = "ReadBookCRUD", urlPatterns = {"/readbookcrud"})
+public class ReadBookCRUD extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,37 +38,37 @@ public class BookCRUD extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         String acao = request.getParameter("acao"); //get what to do
-        String filter = request.getParameter("filter"); //get the filter status
         String page = null; //page that will be request
-        BookBean book = new BookBean();        
-        BookDAO bookDao;
-        List<BookBean> books = null;        
+        ReadBookBean read = new ReadBookBean();
+        ReadBookDAO readDao;
+        List<ReadBookBean> rbooks = null;
 
         if (session.getAttribute("logged") == null) {
             page = "/login.jsp";
         } else {
-            book.setUser((UserBean) session.getAttribute("logged"));
-            String userHash = book.getUser().getHash(); //use for filter by user
+            read.setUser((UserBean) session.getAttribute("logged"));
+            
+            String userHash = read.getUser().getHash(); //use for filter by user            
             try {
-                bookDao = new BookDAO();
+                readDao = new ReadBookDAO();
 
                 //listar
                 if ((acao == null) || (acao.equals("list"))) {
-                    books = bookDao.list(userHash);
+                    rbooks = readDao.list(userHash);
                     request.setAttribute("books", books);
                     page = "/book/mybooks.jsp?content=books";
-               
+
                 } //filtrar
                 else if (acao.equals("filter")) {
                     books = bookDao.list(filter, userHash);
                     request.setAttribute("books", books);
-                    if (filter.trim().isEmpty())
+                    if (filter.trim().isEmpty()) {
                         request.setAttribute("status", false);
-                    else
+                    } else {
                         request.setAttribute("status", true);
+                    }
                     page = "/book/mybooks.jsp?content=books";
-                    
-               
+
                 } //view
                 else if (acao.equals("view")) {
                     book = bookDao.read(Integer.valueOf(request.getParameter("id")), userHash);
@@ -73,13 +80,13 @@ public class BookCRUD extends HttpServlet {
                         request.setAttribute("types", BookClass.DRAMA);
                         page = "/book/mybooks.jsp?content=viewbook";
                     }
-                    
+
                 } //incluir
                 else if (acao.equals("insert")) {
                     request.setAttribute("book", book);
                     request.setAttribute("types", BookClass.DRAMA);
-                    page = "/book/mybooks.jsp?content=addbook";                 
-                    
+                    page = "/book/mybooks.jsp?content=addbook";
+
                 } //alterar
                 else if (acao.equals("update")) {
                     book = bookDao.read(Integer.valueOf(request.getParameter("id")), userHash);
@@ -91,7 +98,7 @@ public class BookCRUD extends HttpServlet {
                         request.setAttribute("types", BookClass.DRAMA);
                         page = "/book/mybooks.jsp?content=addbook";
                     }
-                    
+
                 } //salvar
                 else if (acao.equals("save")) {
                     // Get the values from the form
@@ -108,10 +115,10 @@ public class BookCRUD extends HttpServlet {
                         if (request.getParameter("pages") != null) {
                             book.setPages(Integer.parseInt(request.getParameter("pages")));
                         }
-                        if (request.getParameter("type") != null) {                            
+                        if (request.getParameter("type") != null) {
                             book.setType(BookClass.valueOf(request.getParameter("type")));
                         }
-                        
+
                         // Salva: inclui ou altera
                         if (request.getParameter("id").equals("0")) { // Incluir
                             if (bookDao.create(book) > 0) {
@@ -134,7 +141,7 @@ public class BookCRUD extends HttpServlet {
                         books = bookDao.list(userHash);
                         request.setAttribute("books", books);
                         page = "/book/mybooks.jsp?content=books";
-                        
+
                     } catch (NumberFormatException e) {
                         request.setAttribute("alert", "erro");
                         request.setAttribute("msg", "Error converting number: " + e);
@@ -166,4 +173,5 @@ public class BookCRUD extends HttpServlet {
         dispatcher.forward(request, response);
 
     }
+
 }
